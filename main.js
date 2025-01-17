@@ -1,17 +1,5 @@
-// This wll be written in JavaScript and will be held off-chain. 
-// There are 4 agents: agentA, agentB, agentC and agentD
-// I need to write a function that takes in as input the decisions of agents and return the changes that will occur.
-// The inputs go into two parts:
-// Movement - The coordinates of their destination (x, y)
-// Action - Attack, Alliance or Ignore. 
-// The function needs to be able to take this new information and compare it to the current state of the game.
-
-// Questions for writing the function:
-// How is it best to be able to store the state of the game? Meaning, how to store the agents position, movements (where they are headed), and what their intentions are (going to battle, alliance or ignore).
-// What is the best way to start comparing the new information and how it will affect the state of the game? How do I make changes to the state? 
-// What should the function return exactly to help further the game? 
-
-// This is for holding info about the state of the game, for each agent + the relationship between them
+// Mock game state includes 4 agents, their positions, destination of their movement and their intention
+// Also has a saved state of the relationships between the agents
 const gameState = {
     agents: {
       agentA: {
@@ -47,8 +35,8 @@ const gameState = {
 
 function updateGameState(_gameState, _agent, _agentDecision) {
     // => Setup: <= //
-    const stateChangeSummary = { movements: [], interactions: [] };
-    const { destination, action , otherAgent} = _agentDecision;
+    const stateChangeSummary = { movements: [], interactions: [] }; // For return data
+    const { destination, action , otherAgent} = _agentDecision; // Agent will pass these params
 
     // => Checks & Effects: <= //
 
