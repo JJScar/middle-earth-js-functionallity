@@ -35,20 +35,23 @@ const updateGameState = (_gameState, _decisions) => {
       newGameState[agent].currentPos = targetPos
     }
 
+    // @note we need to make sure that we check the alliance is valid after movement. So when checking alliances need to make sure that the new position is valid not current
+
     // Handling Interactions //
     // Making sure agent passed a desired interaction and a targetAgent
     if (interaction && targetAgent){
+      const targetAgentDecision = _decisions[targetAgent]
       const targetAgentState = newGameState[targetAgent]
       // Alliance Scenario
       const targetAgentKey = targetAgent.slice(-1); // Extract the last character (e.g., "B" from "agentB")
       if (interaction === "alliance" && newGameState[agent][`rel${targetAgentKey}`] !== "alliance"){ // Checking for wanting alliance and that they are not already allied
-        if (_decisions[targetAgent]?.interaction === "alliance" && _decisions[targetAgent]?.with === agent && isWithinTwoUnits(currentAgentState.currentPos, targetAgentState.currentPos)){
+        if (targetAgentDecision?.interaction === "alliance" && targetAgentDecision?.with === agent && isWithinTwoUnits(targetPos, targetAgentDecision?.targetPos) && isValidMovement(targetPos, targetAgentDecision?.targetPos)){
           updateRelationship(agent, targetAgent, "alliance")
         }
       }
 
       if (interaction === "battle" && newGameState[agent][`rel${targetAgentKey}`] !== "battle"){ // Checking for wanting battle and that they are not already battling
-        if (newGameState[agent][`rel${targetAgentKey}`] !== "alliance" && isWithinTwoUnits(currentAgentState.currentPos, targetAgentState.currentPos)){
+        if (newGameState[agent][`rel${targetAgentKey}`] !== "alliance" && isWithinTwoUnits(targetPos, targetAgentDecision?.targetPos)){
           updateRelationship(agent, targetAgent, "battle")
         }
       }

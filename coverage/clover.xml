@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1737830139608" clover="3.2.0">
+  <project timestamp="1737830139608" name="All files">
+    <metrics statements="27" coveredstatements="27" conditionals="26" coveredconditionals="24" methods="3" coveredmethods="3" elements="56" coveredelements="54" complexity="0" loc="27" ncloc="27" packages="1" files="1" classes="1"/>
+    <file name="updateGameState.js" path="/Users/jordansolomon/Desktop/Web3/Development/Middle-Earth/Offchain-functionallity/updateGameState.js">
+      <metrics statements="27" coveredstatements="27" conditionals="26" coveredconditionals="24" methods="3" coveredmethods="3"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="10" count="6" type="stmt"/>
+      <line num="11" count="6" type="stmt"/>
+      <line num="12" count="6" type="stmt"/>
+      <line num="17" count="6" type="stmt"/>
+      <line num="18" count="4" type="stmt"/>
+      <line num="19" count="4" type="stmt"/>
+      <line num="21" count="4" type="stmt"/>
+      <line num="22" count="4" type="stmt"/>
+      <line num="27" count="6" type="stmt"/>
+      <line num="28" count="24" type="stmt"/>
+      <line num="29" count="24" type="stmt"/>
+      <line num="30" count="24" type="stmt"/>
+      <line num="34" count="24" type="cond" truecount="5" falsecount="0"/>
+      <line num="35" count="18" type="stmt"/>
+      <line num="40" count="24" type="cond" truecount="4" falsecount="0"/>
+      <line num="41" count="22" type="stmt"/>
+      <line num="43" count="22" type="stmt"/>
+      <line num="44" count="22" type="cond" truecount="4" falsecount="0"/>
+      <line num="45" count="2" type="cond" truecount="4" falsecount="1"/>
+      <line num="46" count="2" type="stmt"/>
+      <line num="50" count="22" type="cond" truecount="4" falsecount="0"/>
+      <line num="51" count="2" type="cond" truecount="3" falsecount="1"/>
+      <line num="52" count="2" type="stmt"/>
+      <line num="59" count="6" type="stmt"/>
+      <line num="62" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
