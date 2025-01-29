@@ -50,8 +50,10 @@ const updateGameState = (_gameState, _decisions) => {
         }
       }
 
+
+      // @note add cooldown functionality, check if the agent is the dominant agent
       if (interaction === "battle" && newGameState[agent][`rel${targetAgentKey}`] !== "battle"){ // Checking for wanting battle and that they are not already battling
-        if (newGameState[agent][`rel${targetAgentKey}`] !== "alliance" && isWithinTwoUnits(targetPos, targetAgentDecision?.targetPos)){
+        if (newGameState[agent][`rel${targetAgentKey}`] !== "alliance" && isWithinTwoUnits(targetPos, targetAgentDecision?.targetPos) && !agent.cooldown && !targetAgent.cooldown){
           updateRelationship(agent, targetAgent, "battle")
         }
       }
@@ -62,4 +64,28 @@ const updateGameState = (_gameState, _decisions) => {
   return newGameState
 }  
 
-module.exports = { updateGameState };
+const battleOutcome = (side1, side2) => {
+  // Calculate total balance of each alliance
+  const balance1 = side1.reduce((sum, agent) => sum + agent.balance, 0);
+  const balance2 = side2.reduce((sum, agent) => sum + agent.balance, 0);
+
+  // Determine which alliance wins
+  const probabilitySide1Wins = balance1 / (balance1 + balance2);
+  const side1Wins = Math.random() < probabilitySide1Wins;
+
+  const winningSide = side1Wins ? side1 : side2;
+  const losingSide = side1Wins ? side2 : side1;
+
+  // Determine which losing agents die (5% chance each)
+  const defeatedAgents = losingSide.map(agent => ({
+      agent,
+      isKIA: Math.random() < 0.05 // 5% chance of being killed
+  }));
+
+  return {
+      winningSide,
+      defeatedAgents, // List of losing agents and whether they died
+  };
+};
+
+module.exports = { updateGameState, battleOutcome};
